@@ -1,6 +1,10 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 void main() {
   runApp(const MyPortfolioApp());
@@ -290,7 +294,7 @@ class ExperienceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: context.responsive<double>(
-        1024, // default
+        500, // default
         sm: 450, // small 
         md: 500, // medium
         lg: 550, // large 
@@ -436,44 +440,95 @@ class ExperienceItem extends StatelessWidget {
 }
 
 class ContactsPage extends StatelessWidget{
+
   @override
   Widget build(BuildContext context){
-    return GridView.count(
-      shrinkWrap: true, // Make the GridView non-scrollable
-      crossAxisCount: 3, // Number of columns
-      children: <Widget>[
-        Text('Text 1'),
-        Text('Text 2'),
-        Text('Text 3'),
-        Text('Text 4'),
-        Text('Text 5'),
-        Text('Text 6'),
-      ],
+    return SizedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SocialItem(
+            logoAssetPath: "assets/linkedin_icon.svg", 
+            text: "Christopher Tesar",
+            uri: Uri.parse('https://www.linkedin.com/in/christopher-tesar-9853a113b/'),
+          ),
+          SocialItem(
+            logoAssetPath: "assets/github_icon.svg", 
+            text: "christophertesar",
+            uri: Uri.parse('https://github.com/christophertesar')
+          ),
+          SocialItem(logoAssetPath: "assets/email_icon.svg", text: "ctesar@sfu.ca"),
+        ],
+      )
     );
-    }
+  }
 }
 
 class SocialItem extends StatelessWidget{
   final String logoAssetPath;
   final String text;
+  final Uri? uri;
 
   const SocialItem({
     Key? key,
     required this.logoAssetPath,
     required this.text,
+    this.uri,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context){
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
+        SvgPicture.asset(
           logoAssetPath, // Replace with your image URL
           width: 25, // Adjust width as needed
           height: 25, // Adjust height as needed
           fit: BoxFit.cover, // Adjust image fitting as needed
+          color: Color.fromARGB(255, 248, 238, 224)
         ),
-        Text(text)
+        const Padding(
+          padding: EdgeInsets.only(
+            left: 5
+          )
+        ),
+        if(uri != null)
+          InkWell(
+            onTap: () => {launchUrl(uri!)},
+            child: Text(
+            textAlign: TextAlign.left,
+            text,
+            style: TextStyle(
+              fontFamily: "Aileron", 
+              fontWeight: FontWeight.w200, 
+              fontSize: context.responsive<double>(
+                12, // default
+                sm: 10, // small 
+                md: 12, // medium
+                lg: 14, // large 
+                xl: 16, // extra large screen
+              ), 
+              color: Color.fromARGB(255, 248, 238, 224)),
+            ),
+          )
+        else
+          Text(
+            textAlign: TextAlign.left,
+            text,
+            style: TextStyle(
+              fontFamily: "Aileron", 
+              fontWeight: FontWeight.w200, 
+              fontSize: context.responsive<double>(
+                12, // default
+                sm: 10, // small 
+                md: 12, // medium
+                lg: 14, // large 
+                xl: 16, // extra large screen
+              ), 
+              color: Color.fromARGB(255, 248, 238, 224)),
+          ),
       ],
     );
   }
