@@ -59,159 +59,174 @@ class TitlePage extends StatelessWidget{
   Widget build(BuildContext context) {
 
     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       alignment: Alignment.topLeft,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          AnimatedOpacity(
-            duration: Duration(seconds: 1),
-            opacity: 1.0,
-            child: RichText(
-              text: TextSpan(
-                text: "hi,",
-                style: TextStyle(
-                  fontFamily: "Aileron", 
-                  fontWeight: FontWeight.w400, 
-                  fontSize: context.responsive<double>(
-                    72, // default
-                    sm: 50, // small 
-                    md: 72, // medium
-                    lg: 86, // large 
-                    xl: 100, // extra large screen
-                  ), 
-                  color: Color.fromARGB(255, 248, 238, 224)),
-                children: <TextSpan>[
-                  TextSpan(
-                      text: ' nice to meet you. I\'m',
-                      style: TextStyle(
-                        fontFamily: "Aileron",
-                        fontWeight: FontWeight.w200,
-                        fontSize: context.responsive<double>(
-                          72, // default
-                          sm: 50, // small 
-                          md: 72, // medium
-                          lg: 86, // large 
-                          xl: 100, // extra large screen
-                        ), 
-                        color: Color.fromARGB(255, 248, 238, 224))
-                  ),
-                ]
-              )
-            ),
-          ),
-          Text(
-            textAlign: TextAlign.left,
-            style: TextStyle(fontFamily: "Aileron", 
-            fontWeight: FontWeight.w800, 
-            fontSize: context.responsive<double>(
-              86, // default
-              sm: 72, // small 
-              md: 86, // medium
-              lg: 100, // large 
-              xl: 132, // extra large screen, 
-            ),
-            color: Color.fromARGB(255, 248, 238, 224)),
-            "Christopher",
-          ),
-          const Padding(
-              padding: EdgeInsets.only(top: 40.0),
-            ),
-          Row(
+      child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Container(
-              color:Color.fromARGB(255, 252, 103, 54), // Pink background
-              padding: EdgeInsets.all(10),
-              child: Container(
-                padding: EdgeInsets.all(10), // Adjust margin as needed
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 255, 176, 176), // Orange background
-                  // borderRadius: BorderRadius.circular(10), // Optional: rounded corners
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                RichText(
+                  text: TextSpan(
+                    text: "Hi,",
+                    style: TextStyle(
+                      fontFamily: "Aileron", 
+                      fontWeight: FontWeight.w400, 
+                      fontSize: context.responsive<double>(
+                        72, // default
+                        sm: 50, // small 
+                        md: 72, // medium
+                        lg: 86, // large 
+                        xl: 100, // extra large screen
+                      ),
+                      color: Color.fromARGB(255, 248, 238, 224)),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: ' nice to meet you.',
+                          style: TextStyle(
+                            fontFamily: "Aileron",
+                            fontWeight: FontWeight.w200,
+                            fontSize: context.responsive<double>(
+                              72, // default
+                              sm: 50, // small 
+                              md: 72, // medium
+                              lg: 86, // large 
+                              xl: 100, // extra large screen
+                            ), 
+                            color: Color.fromARGB(255, 248, 238, 224))
+                      ),
+                    ]
+                  )
                 ),
-                child: Image.asset(
-                  'assets/self.png', // Replace with your image URL
-                  width: context.responsive<double>(
-                    400, // default
-                    sm: 200, // small 
-                    md: 400, // medium
-                    lg: 600, // large 
-                    xl: 800, // extra large screen
-                  ), // Adjust width as needed
-                  height: context.responsive<double>(
-                    400, // default
-                    sm: 200, // small 
-                    md: 400, // medium
-                    lg: 600, // large 
-                    xl: 800, // extra large screen
-                  ), // Adjust height as needed
-                  fit: BoxFit.cover, // Adjust image fitting as needed
+                RichText(
+                  text: TextSpan(
+                    text: 'I\'m',
+                    style: TextStyle(fontFamily: "Aileron", 
+                    fontWeight: FontWeight.w200, 
+                    fontSize: context.responsive<double>(
+                      86, // default
+                      sm: 72, // small 
+                      md: 86, // medium
+                      lg: 100, // large 
+                      xl: 132, // extra large screen, 
+                    ),
+                    color: Color.fromARGB(255, 248, 238, 224)),
+                    children: <TextSpan> [
+                      TextSpan(
+                        text: ' Christopher.',
+                        style: TextStyle(
+                          fontFamily: "Aileron", 
+                          fontWeight: FontWeight.w800, 
+                          fontSize: context.responsive<double>(
+                            86, // default
+                            sm: 72, // small 
+                            md: 86, // medium
+                            lg: 100, // large 
+                            xl: 132, // extra large screen, 
+                          ),
+                        )
+                       )
+                    ]
+                  )
                 ),
-              ),
+              ]),
             ),
             const Padding(
               padding: EdgeInsets.only(left: 40.0),
             ),
-            Container(
-              alignment: Alignment.topLeft,
-              width: context.responsive<double>(
-                600, // default
-                sm: 400, // small 
-                md: 600, // medium
-                lg: 900, // large 
-                xl: 1200, // extra large screen
-              ),
+            SizedBox(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                  textAlign: TextAlign.left,
-                  "I'm a software developer.",
-                  style: TextStyle(
-                    fontFamily: "Aileron", 
-                    fontWeight: FontWeight.w200, 
-                    fontSize: context.responsive<double>(
-                      50, // default
-                      sm: 36, // small 
-                      md: 50, // medium
-                      lg: 72, // large 
-                      xl: 86, // extra large screen
-                    ), 
-                    color: Color.fromARGB(255, 248, 238, 224)),
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children:[
+                  Container(
+                    color:Color.fromARGB(255, 252, 103, 54), // Pink background
+                    padding: EdgeInsets.all(10),
+                    child: Container(
+                      padding: EdgeInsets.all(10), // Adjust margin as needed
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 255, 176, 176), // Orange background
+                        // borderRadius: BorderRadius.circular(10), // Optional: rounded corners
+                      ),
+                      child: Image.asset(
+                        'assets/self.png', // Replace with your image URL
+                        width: context.responsive<double>(
+                          400, // default
+                          sm: 200, // small 
+                          md: 400, // medium
+                          lg: 600, // large 
+                          xl: 800, // extra large screen
+                        ), // Adjust width as needed
+                        height: context.responsive<double>(
+                          400, // default
+                          sm: 200, // small 
+                          md: 400, // medium
+                          lg: 600, // large 
+                          xl: 800, // extra large screen
+                        ), // Adjust height as needed
+                        fit: BoxFit.cover, // Adjust image fitting as needed
+                      ),
+                    ),
                   ),
-                  Text(
-                    textAlign: TextAlign.left,
-                    "I love to build meaningful projects.",
-                    style: TextStyle(
-                    fontFamily: "Aileron", 
-                    fontWeight: FontWeight.w200, 
-                    fontSize: context.responsive<double>(
-                      50, // default
-                      sm: 36, // small 
-                      md: 50, // medium
-                      lg: 72, // large 
-                      xl: 86, // extra large screen
-                    ), 
-                    color: Color.fromARGB(255, 248, 238, 224)),
-                  ),
-                ],
-              )
-            ),
+                ]
+              ),
+            )
+            
+            
+            
+            // Container(
+            //   alignment: Alignment.topLeft,
+            //   width: context.responsive<double>(
+            //     600, // default
+            //     sm: 400, // small 
+            //     md: 600, // medium
+            //     lg: 900, // large 
+            //     xl: 1200, // extra large screen
+            //   ),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text(
+            //       textAlign: TextAlign.left,
+            //       "I'm a software developer.",
+            //       style: TextStyle(
+            //         fontFamily: "Aileron", 
+            //         fontWeight: FontWeight.w200, 
+            //         fontSize: context.responsive<double>(
+            //           50, // default
+            //           sm: 36, // small 
+            //           md: 50, // medium
+            //           lg: 72, // large 
+            //           xl: 86, // extra large screen
+            //         ), 
+            //         color: Color.fromARGB(255, 248, 238, 224)),
+            //       ),
+            //       Text(
+            //         textAlign: TextAlign.left,
+            //         "I love to build meaningful projects.",
+            //         style: TextStyle(
+            //         fontFamily: "Aileron", 
+            //         fontWeight: FontWeight.w200, 
+            //         fontSize: context.responsive<double>(
+            //           50, // default
+            //           sm: 36, // small 
+            //           md: 50, // medium
+            //           lg: 72, // large 
+            //           xl: 86, // extra large screen
+            //         ), 
+            //         color: Color.fromARGB(255, 248, 238, 224)),
+            //       ),
+            //     ],
+            //   )
+            // ),
             ],
           ),
-          Padding(
-            padding: EdgeInsets.only(
-              top: context.responsive<double>(
-                100, // default
-                sm: 50, // small 
-                md: 100, // medium
-                lg: 200, // large 
-                xl: 300, // extra large screen
-              )
-            ),
-          ) 
-        ],
-      )
-    );
+      );
   }
 }
 
@@ -495,23 +510,9 @@ class SocialItem extends StatelessWidget{
           )
         ),
         if(uri != null)
-          InkWell(
-            onTap: () => {launchUrl(uri!)},
-            child: Text(
-            textAlign: TextAlign.left,
-            text,
-            style: TextStyle(
-              fontFamily: "Aileron", 
-              fontWeight: FontWeight.w200, 
-              fontSize: context.responsive<double>(
-                12, // default
-                sm: 10, // small 
-                md: 12, // medium
-                lg: 14, // large 
-                xl: 16, // extra large screen
-              ), 
-              color: Color.fromARGB(255, 248, 238, 224)),
-            ),
+          HoverColorChangeWidget(
+            uri: uri,
+            text: text,
           )
         else
           Text(
@@ -552,5 +553,54 @@ extension Responsive on BuildContext {
                 : wd >= 768
                     ? (sm ?? defaultVal)
                     : defaultVal;
+  }
+}
+
+class HoverColorChangeWidget extends StatefulWidget {
+  final Uri? uri;
+  final String text;
+
+  HoverColorChangeWidget({Key? key, this.uri, required this.text}) : super(key: key);
+
+  @override
+  _HoverColorChangeWidgetState createState() => _HoverColorChangeWidgetState();
+}
+
+class _HoverColorChangeWidgetState extends State<HoverColorChangeWidget> {
+  Color textColor = Color.fromARGB(255, 248, 238, 224);
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onHover: (event) {
+        setState(() {
+          textColor = Colors.blue; // Change this to the color you want when hovering
+        });
+      },
+      onExit: (event) {
+        setState(() {
+          textColor = Color.fromARGB(255, 248, 238, 224); // Or whatever your normal color is
+        });
+      },
+      child: InkWell(
+        onTap: () => launchUrl(widget.uri!),
+        child: Text(
+          widget.text,
+          textAlign: TextAlign.left,
+          style: TextStyle(
+            fontFamily: "Aileron",
+            fontWeight: FontWeight.w200,
+            fontSize: context.responsive<double>(
+              12, // default
+              sm: 10, // small
+              md: 12, // medium
+              lg: 14, // large
+              xl: 16, // extra large screen
+            ),
+            color: textColor, // Use the textColor variable here
+          ),
+        ),
+      ),
+    );
   }
 }
