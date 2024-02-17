@@ -304,8 +304,8 @@ class ExperienceItem extends StatelessWidget {
         1024, // default
         sm: 768, // small 
         md: 1024, // medium
-        lg: 1081, // large 
-        xl: 1440, // extra large screen
+        lg: 1920, // large 
+        xl: 2160, // extra large screen
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
