@@ -7,8 +7,8 @@ const RESOURCES = {"assets/AssetManifest.bin": "c29f5590e180aa520e5949ba5801354a
 "assets/AssetManifest.bin.json": "67541e8b7a262c283cfb67a749be32f0",
 "assets/AssetManifest.json": "08dc4b9da628f2d0da2cedf0b60c1f21",
 "assets/assets/email_icon.svg": "231463f429fddfcb3f3ecca6e5af1ae3",
-"assets/assets/github_icon.svg": "91fc7cd187b65073322024169d2cd416",
-"assets/assets/linkedin_icon.svg": "c20e472dbbe47e5809cf79a0b4e283e4",
+"assets/assets/github_icon.svg": "e2d923b65e4fa42b251a32b2bac27f4b",
+"assets/assets/linkedin_icon.svg": "dbeb8c6d7ba479409630af257b0eb32f",
 "assets/assets/LMI_logo.jpg": "3f19e161d9187039ef7b48b209274e40",
 "assets/assets/self.png": "74d249415f18ac26ae97694688f58659",
 "assets/assets/SFU_logo.jpg": "e6d9134d434960b2f6dafca446ce4072",
@@ -38,9 +38,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "c29f5590e180aa520e5949ba5801354a
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "35c80bec7ac5e23d14561f05d64a75c6",
-"/": "35c80bec7ac5e23d14561f05d64a75c6",
-"main.dart.js": "243bfdc1bdea07dcd9ce0010b468d5f6",
+"index.html": "79516b6bcde7057538dc262c0e259a6d",
+"/": "79516b6bcde7057538dc262c0e259a6d",
+"main.dart.js": "0deb264785152000e438976c74eb9346",
 "manifest.json": "9583ebe54188295a4768ae1aa040030b",
 "version.json": "cc1fa9cce5af273c0909d105387fee89"};
 // The application shell files that are downloaded before a service worker can

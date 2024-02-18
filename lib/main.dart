@@ -146,9 +146,9 @@ class TitlePage extends StatelessWidget{
                 children:[
                   Container(
                     color:Color.fromARGB(255, 252, 103, 54), // Pink background
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(20),
                     child: Container(
-                      padding: EdgeInsets.all(10), // Adjust margin as needed
+                      padding: EdgeInsets.all(20), // Adjust margin as needed
                       decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 255, 176, 176), // Orange background
                         // borderRadius: BorderRadius.circular(10), // Optional: rounded corners
@@ -327,9 +327,9 @@ class ExperienceItem extends StatelessWidget {
         children: [
           Container(
             color: Color.fromARGB(255, 252, 103, 54), // Pink background
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(20),
             child: Container(
-              padding: const EdgeInsets.all(10), // Adjust margin as needed
+              padding: const EdgeInsets.all(20), // Adjust margin as needed
               decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 255, 176, 176), // Orange background
                 // borderRadius: BorderRadius.circular(10), // Optional: rounded corners
@@ -473,9 +473,68 @@ class ContactsPage extends StatelessWidget{
             text: "christophertesar",
             uri: Uri.parse('https://github.com/christophertesar')
           ),
-          SocialItem(logoAssetPath: "assets/email_icon.svg", text: "ctesar@sfu.ca"),
+          SocialItem(
+           logoAssetPath: "assets/email_icon.svg",
+           text: "ctesar@sfu.ca",
+           uri: Uri(
+            scheme: 'mailto',
+            path: "ctesar@sfu.ca"
+            )  
+          ),
         ],
       )
+    );
+  }
+}
+
+class MailToItem extends SocialItem{
+  const MailToItem({
+    Key? key,
+    required String logoAssetPath,
+    required String text,
+    String? uri,
+  }) : super(key: key, logoAssetPath: logoAssetPath, text: text);
+
+  @override
+  Widget build(BuildContext context){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          logoAssetPath, // Replace with your image URL
+          width: 25, // Adjust width as needed
+          height: 25, // Adjust height as needed
+          fit: BoxFit.cover, // Adjust image fitting as needed
+          
+          color: Color.fromARGB(255, 248, 238, 224)
+        ),
+        const Padding(
+          padding: EdgeInsets.only(
+            left: 5
+          )
+        ),
+        if(uri != null)
+          HoverColorChangeWidget(
+            uri: uri,
+            text: text,
+          )
+        else
+          Text(
+            textAlign: TextAlign.left,
+            text,
+            style: TextStyle(
+              fontFamily: "Aileron", 
+              fontWeight: FontWeight.w200, 
+              fontSize: context.responsive<double>(
+                12, // default
+                sm: 10, // small 
+                md: 12, // medium
+                lg: 14, // large 
+                xl: 16, // extra large screen
+              ), 
+              color: Color.fromARGB(255, 248, 238, 224)),
+          ),
+      ],
     );
   }
 }
@@ -502,6 +561,7 @@ class SocialItem extends StatelessWidget{
           width: 25, // Adjust width as needed
           height: 25, // Adjust height as needed
           fit: BoxFit.cover, // Adjust image fitting as needed
+          
           color: Color.fromARGB(255, 248, 238, 224)
         ),
         const Padding(
@@ -597,7 +657,7 @@ class _HoverColorChangeWidgetState extends State<HoverColorChangeWidget> {
               lg: 14, // large
               xl: 16, // extra large screen
             ),
-            color: textColor, // Use the textColor variable here
+            color: textColor,
           ),
         ),
       ),
