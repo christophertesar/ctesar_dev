@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+import 'package:card_swiper/card_swiper.dart';
 
 void main() {
   runApp(const MyPortfolioApp());
@@ -44,6 +45,19 @@ class PortfolioPage extends StatelessWidget {
         // Each child represents a page in the portfolio
         ExperiencePage(),
 
+        const SwiperPage(
+          images: [
+            "RescueReady.png",
+            "Eznote.png",
+            "osrs_vr.png"
+          ],
+          text:[
+            "SFU EC 1st Place: RescueReady",
+            "WEC 2024 1st Place: EzNote",
+            "Old School Runescape in VR"
+          ]
+        ),
+
         ContactsPage(),
         // Add more PortfolioItem widgets for additional projects
       ],
@@ -51,6 +65,89 @@ class PortfolioPage extends StatelessWidget {
   }
 }
 
+class SwiperPage extends StatelessWidget{
+  final List<String> images;
+  final List<String> text;
+
+  const SwiperPage(
+    {
+      Key? key,
+      required this.images,
+      required this.text
+    }
+    ) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children:[
+      Text(
+        textAlign: TextAlign.left,
+        "Projects",
+        style: TextStyle(
+          fontFamily: "Aileron", 
+          fontWeight: FontWeight.w800, 
+          fontSize: context.responsive<double>(
+            72, // default
+            sm: 50, // small 
+            md: 72, // medium
+            lg: 86, // large 
+            xl: 100, // extra large screen
+          ), 
+          color: Color.fromARGB(255, 248, 238, 224)),
+      ),
+      Padding(
+        padding: EdgeInsets.only(top: context.responsive<double>(
+            30, // default
+            sm: 20, // small 
+            md: 30, // medium
+            lg: 40, // large 
+            xl: 50, // extra large screen
+        )),
+      ),
+      Swiper(
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(40),
+                child: Image.asset(
+                  images[index],
+                  fit: BoxFit.fill,
+                  height: 300,
+                  width: 300
+                )
+              )
+              ,
+              Text(
+                text[index],
+                style: TextStyle(
+                  fontFamily: "Aileron",
+                  fontWeight: FontWeight.w200,
+                  fontSize: context.responsive<double>(
+                    12, // default
+                    sm: 12, // small 
+                    md: 12, // medium
+                    lg: 14, // large 
+                    xl: 14, // extra large screen
+                  ),
+                  color: Color.fromARGB(255, 248, 238, 224),
+                )
+              ),
+            ]
+          );
+        },
+        itemCount: images.length,
+        itemWidth: 400.0,
+        itemHeight: 400.0,
+        layout: SwiperLayout.STACK,
+        autoplay: true,
+      )
+      ]
+    );
+  }
+}
 
 class TitlePage extends StatelessWidget{
   const TitlePage({Key? key}) : super(key: key);
@@ -176,54 +273,6 @@ class TitlePage extends StatelessWidget{
                 ]
               ),
             )
-            
-            
-            
-            // Container(
-            //   alignment: Alignment.topLeft,
-            //   width: context.responsive<double>(
-            //     600, // default
-            //     sm: 400, // small 
-            //     md: 600, // medium
-            //     lg: 900, // large 
-            //     xl: 1200, // extra large screen
-            //   ),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Text(
-            //       textAlign: TextAlign.left,
-            //       "I'm a software developer.",
-            //       style: TextStyle(
-            //         fontFamily: "Aileron", 
-            //         fontWeight: FontWeight.w200, 
-            //         fontSize: context.responsive<double>(
-            //           50, // default
-            //           sm: 36, // small 
-            //           md: 50, // medium
-            //           lg: 72, // large 
-            //           xl: 86, // extra large screen
-            //         ), 
-            //         color: Color.fromARGB(255, 248, 238, 224)),
-            //       ),
-            //       Text(
-            //         textAlign: TextAlign.left,
-            //         "I love to build meaningful projects.",
-            //         style: TextStyle(
-            //         fontFamily: "Aileron", 
-            //         fontWeight: FontWeight.w200, 
-            //         fontSize: context.responsive<double>(
-            //           50, // default
-            //           sm: 36, // small 
-            //           md: 50, // medium
-            //           lg: 72, // large 
-            //           xl: 86, // extra large screen
-            //         ), 
-            //         color: Color.fromARGB(255, 248, 238, 224)),
-            //       ),
-            //     ],
-            //   )
-            // ),
             ],
           ),
       );
@@ -309,19 +358,13 @@ class ExperienceItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: context.responsive<double>(
-        500, // default
-        sm: 450, // small 
-        md: 500, // medium
+        475, // default
+        sm: 425, // small 
+        md: 475, // medium
         lg: 550, // large 
         xl: 600, // extra large screen
       ),
-      width: context.responsive<double>(
-        1024, // default
-        sm: 768, // small 
-        md: 1024, // medium
-        lg: 1920, // large 
-        xl: 2160, // extra large screen
-      ),
+      width: MediaQuery.of(context).size.width,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
