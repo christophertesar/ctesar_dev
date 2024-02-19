@@ -73,6 +73,9 @@ flutter:
     - assets/linkedin_icon.svg
     - assets/email_icon.svg
     - assets/github_icon.svg
+    - assets/Eznote.png
+    - assets/osrs_vr.png
+    - assets/RescueReady.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -3,13 +3,16 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "c29f5590e180aa520e5949ba5801354a",
-"assets/AssetManifest.bin.json": "67541e8b7a262c283cfb67a749be32f0",
-"assets/AssetManifest.json": "08dc4b9da628f2d0da2cedf0b60c1f21",
+const RESOURCES = {"assets/AssetManifest.bin": "b47e084e4c55192aa51f146fb2eb1f5f",
+"assets/AssetManifest.bin.json": "7a6785c16bfe935aef50fe6776b8ba29",
+"assets/AssetManifest.json": "bb48fdbf6cc601dc793ca175619e4846",
 "assets/assets/email_icon.svg": "b6fe67332aa15fc2be0fe2a7448188d4",
+"assets/assets/Eznote.png": "b98d9705164bc0d81fd32ce5627352c0",
 "assets/assets/github_icon.svg": "e2d923b65e4fa42b251a32b2bac27f4b",
 "assets/assets/linkedin_icon.svg": "dbeb8c6d7ba479409630af257b0eb32f",
 "assets/assets/LMI_logo.jpg": "3f19e161d9187039ef7b48b209274e40",
+"assets/assets/osrs_vr.png": "8c7692a67350fed4d01875b91e9f0ba2",
+"assets/assets/RescueReady.png": "f79f20af43c56719d26255028d363fe8",
 "assets/assets/self.png": "74d249415f18ac26ae97694688f58659",
 "assets/assets/SFU_logo.jpg": "e6d9134d434960b2f6dafca446ce4072",
 "assets/FontManifest.json": "0aeba628633a580c970e4567cae7b53f",
@@ -38,8 +41,8 @@ const RESOURCES = {"assets/AssetManifest.bin": "c29f5590e180aa520e5949ba5801354a
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "2fa53afe4374bcdebcdf1ab3316d2069",
-"/": "2fa53afe4374bcdebcdf1ab3316d2069",
+"index.html": "f89c77d3578be6bc0bf662f19a2009e7",
+"/": "f89c77d3578be6bc0bf662f19a2009e7",
 "main.dart.js": "4259457e63af7342f552573ee0c82d2a",
 "manifest.json": "9583ebe54188295a4768ae1aa040030b",
 "version.json": "cc1fa9cce5af273c0909d105387fee89"};
