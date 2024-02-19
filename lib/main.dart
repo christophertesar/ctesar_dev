@@ -45,16 +45,24 @@ class PortfolioPage extends StatelessWidget {
         // Each child represents a page in the portfolio
         ExperiencePage(),
 
-        const SwiperPage(
-          images: [
+        SwiperPage(
+          images: const [
             "assets/RescueReady.png",
             "assets/Eznote.png",
-            "assets/osrs_vr.png"
+            "assets/osrs_vr.png",
+            "assets/motor_torque.png"
           ],
-          text:[
+          text: const [
             "SFU EC 1st Place: RescueReady",
             "WEC 2024 1st Place: EzNote",
-            "Old School Runescape in VR"
+            "Old School Runescape in VR",
+            "Embedded Motor Speed/Torque Sensor"
+          ],
+          link: [
+            Uri.parse("https://github.com/amot-dev/RescueReady"),
+            Uri.parse("https://github.com/christophertesar/wec_2024"),
+            Uri.parse("https://github.com/christophertesar/osrs"),
+            Uri.parse("https://github.com/christophertesar/Motor-Speed-and-Torque-Sensing")
           ]
         ),
 
@@ -68,12 +76,14 @@ class PortfolioPage extends StatelessWidget {
 class SwiperPage extends StatelessWidget{
   final List<String> images;
   final List<String> text;
+  final List<Uri> link;
 
   const SwiperPage(
     {
       Key? key,
       required this.images,
-      required this.text
+      required this.text,
+      required this.link
     }
     ) : super(key: key);
 
@@ -107,6 +117,7 @@ class SwiperPage extends StatelessWidget{
         )),
       ),
       Swiper(
+        onTap: (index) => launchUrl(link[index]),
         itemBuilder: (BuildContext context, int index) {
           return Column(
             children: [
