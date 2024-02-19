@@ -47,9 +47,9 @@ class PortfolioPage extends StatelessWidget {
 
         const SwiperPage(
           images: [
-            "RescueReady.png",
-            "self.png",
-            "osrs_vr.png"
+            "assets/RescueReady.png",
+            "assets/Eznote.png",
+            "assets/osrs_vr.png"
           ],
           text:[
             "SFU EC 1st Place: RescueReady",
