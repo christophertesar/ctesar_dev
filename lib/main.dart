@@ -1,10 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 import 'package:card_swiper/card_swiper.dart';
 
 void main() {
@@ -121,27 +117,37 @@ class SwiperPage extends StatelessWidget{
         itemBuilder: (BuildContext context, int index) {
           return Column(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(40),
-                child: Image.asset(
-                  images[index],
-                  fit: BoxFit.fill,
-                  height: 300,
-                  width: 300
-                )
-              )
-              ,
+              DoublePhotoFrame(
+                innerBorder: Color.fromARGB(255, 255, 176, 176), 
+                outerBorder: Color.fromARGB(255, 252, 103, 54),
+                logoAssetPath: images[index],
+                borderRadius: 40,
+                borderSpace: 20,
+                imageSizeSm: 200,
+                imageSizeMd: 250,
+                imageSizeLg: 300,
+                imageSizeXl: 350,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: context.responsive<double>(
+                    5, // default
+                    sm: 5, // small 
+                    md: 5, // medium
+                    lg: 5, // large 
+                    xl: 5, // extra large screen
+                )),
+              ),
               Text(
                 text[index],
                 style: TextStyle(
                   fontFamily: "Aileron",
                   fontWeight: FontWeight.w200,
                   fontSize: context.responsive<double>(
-                    12, // default
-                    sm: 12, // small 
-                    md: 12, // medium
-                    lg: 14, // large 
-                    xl: 14, // extra large screen
+                    14, // default
+                    sm: 14, // small 
+                    md: 14, // medium
+                    lg: 16, // large 
+                    xl: 16, // extra large screen
                   ),
                   color: Color.fromARGB(255, 248, 238, 224),
                 )
@@ -150,8 +156,8 @@ class SwiperPage extends StatelessWidget{
           );
         },
         itemCount: images.length,
-        itemWidth: 400.0,
-        itemHeight: 400.0,
+        itemWidth: 600.0,
+        itemHeight: 600.0,
         layout: SwiperLayout.STACK,
         autoplay: true,
       )
@@ -247,39 +253,21 @@ class TitlePage extends StatelessWidget{
             const Padding(
               padding: EdgeInsets.only(left: 40.0),
             ),
-            SizedBox(
+            const SizedBox(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
-                  Container(
-                    color:Color.fromARGB(255, 252, 103, 54), // Pink background
-                    padding: EdgeInsets.all(20),
-                    child: Container(
-                      padding: EdgeInsets.all(20), // Adjust margin as needed
-                      decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 255, 176, 176), // Orange background
-                        // borderRadius: BorderRadius.circular(10), // Optional: rounded corners
-                      ),
-                      child: Image.asset(
-                        'assets/self.png', // Replace with your image URL
-                        width: context.responsive<double>(
-                          400, // default
-                          sm: 200, // small 
-                          md: 400, // medium
-                          lg: 600, // large 
-                          xl: 800, // extra large screen
-                        ), // Adjust width as needed
-                        height: context.responsive<double>(
-                          400, // default
-                          sm: 200, // small 
-                          md: 400, // medium
-                          lg: 600, // large 
-                          xl: 800, // extra large screen
-                        ), // Adjust height as needed
-                        fit: BoxFit.cover, // Adjust image fitting as needed
-                      ),
-                    ),
+                  DoublePhotoFrame(
+                    innerBorder: Color.fromARGB(255, 255, 176, 176), 
+                    outerBorder: Color.fromARGB(255, 252, 103, 54), 
+                    logoAssetPath: 'assets/self.png',
+                    imageSizeSm: 200,
+                    imageSizeMd: 400,
+                    imageSizeLg: 600,
+                    imageSizeXl: 800,
+                    borderRadius: 80,
+                    borderSpace: 40,
                   ),
                 ]
               ),
@@ -322,7 +310,7 @@ class ExperiencePage extends StatelessWidget{
               xl: 50, // extra large screen
           )),
         ),
-        ExperienceItem(
+        const ExperienceItem(
           logoAssetPath: 'assets/LMI_logo.jpg',
           positionName: 'Software Engineer Co-op',
           companyName: 'LMI Technologies',
@@ -335,7 +323,7 @@ class ExperiencePage extends StatelessWidget{
             'Created a test coverage tracking tool, used by team members to monitor manual and automated tests, and identify areas for enhanced coverage.',
           ],
         ),
-        ExperienceItem(
+        const ExperienceItem(
           logoAssetPath: 'assets/SFU_logo.jpg',
           positionName: 'Undergraduate Reasearch Assistant',
           companyName: 'Simon Fraser University Faculty of Applied Science',
@@ -379,34 +367,10 @@ class ExperienceItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            color: Color.fromARGB(255, 252, 103, 54), // Pink background
-            padding: EdgeInsets.all(20),
-            child: Container(
-              padding: const EdgeInsets.all(20), // Adjust margin as needed
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 255, 176, 176), // Orange background
-                // borderRadius: BorderRadius.circular(10), // Optional: rounded corners
-              ),
-              child: Image.asset(
-                logoAssetPath,
-                width: context.responsive<double>(
-                  200, // default
-                  sm: 100, // small 
-                  md: 200, // medium
-                  lg: 250, // large 
-                  xl: 300, // extra large screen
-                ), // Adjust width as needed
-                height: context.responsive<double>(
-                  200, // default
-                  sm: 100, // small 
-                  md: 200, // medium
-                  lg: 250, // large 
-                  xl: 300, // extra large screen
-                ), // Adjust height as needed
-                fit: BoxFit.cover, // Adjust image fitting as needed
-              ),
-            ),
+          DoublePhotoFrame(
+            innerBorder: const Color.fromARGB(255, 255, 176, 176), 
+            outerBorder: const Color.fromARGB(255, 252, 103, 54), 
+            logoAssetPath: logoAssetPath
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -421,13 +385,7 @@ class ExperienceItem extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.topLeft,
-            width: context.responsive<double>(             
-                750, // default
-                sm: 550, // small 
-                md: 750, // medium
-                lg: 950, // large 
-                xl: 1200, // extra large screen
-              ),
+            width: MediaQuery.of(context).size.width * 0.7,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -716,5 +674,89 @@ class _HoverColorChangeWidgetState extends State<HoverColorChangeWidget> {
         ),
       ),
     );
+  }
+}
+
+class DoublePhotoFrame extends StatelessWidget{
+  final Color outerBorder;
+  final Color innerBorder;
+  final String logoAssetPath;
+  final double imageSizeSm;
+  final double imageSizeMd;
+  final double imageSizeLg;
+  final double imageSizeXl;
+  final double borderRadius;
+  final double borderSpace;
+
+  const DoublePhotoFrame({
+    Key? key,
+    required this.innerBorder,
+    required this.outerBorder,
+    required this.logoAssetPath,
+    this.imageSizeSm = 100,
+    this.imageSizeMd = 200,
+    this.imageSizeLg = 250,
+    this.imageSizeXl = 300,
+    this.borderRadius = 40,
+    this.borderSpace = 20,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context){
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(borderRadius),
+      child: Container(
+        color: outerBorder, // Pink background
+        padding: EdgeInsets.all(borderSpace),
+        child: Container(
+          padding: EdgeInsets.all(borderSpace), // Adjust margin as needed
+          decoration: BoxDecoration(
+            color: innerBorder, // Orange background
+            borderRadius: BorderRadius.circular(borderRadius), // Optional: rounded corners
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(borderRadius),
+            child: Image.asset(
+              logoAssetPath,
+              width: context.responsive<double>(
+                imageSizeMd, // default
+                sm: imageSizeSm, // small 
+                md: imageSizeMd, // medium
+                lg: imageSizeLg, // large 
+                xl: imageSizeXl, // extra large screen
+              ), // Adjust width as needed
+              height: context.responsive<double>(
+                imageSizeMd, // default
+                sm: imageSizeSm, // small 
+                md: imageSizeMd, // medium
+                lg: imageSizeLg, // large 
+                xl: imageSizeXl, // extra large screen
+              ), // Adjust height as needed
+              fit: BoxFit.cover, // Adjust image fitting as needed
+            ),
+          ),
+        ),
+      )
+    );
+  }
+}
+
+class FadeInText extends StatefulWidget{
+  @override
+  _FadeInTextState createState() => _FadeInTextState();
+}
+
+class _FadeInTextState extends State<FadeInText>{
+  bool _isVisible = false;
+  
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
+  Widget build(BuildContext context){
+    return Row();
   }
 }
