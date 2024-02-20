@@ -790,3 +790,5 @@ class _FadeInTextState extends State<FadeInText>{
       );
   }
 }
+
+// class CyclingText extends StatefulWidget
