@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 void main() {
   runApp(const MyPortfolioApp());
@@ -185,69 +186,75 @@ class TitlePage extends StatelessWidget{
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                RichText(
-                  text: TextSpan(
-                    text: "Hi,",
-                    style: TextStyle(
-                      fontFamily: "Aileron", 
-                      fontWeight: FontWeight.w400, 
-                      fontSize: context.responsive<double>(
-                        72, // default
-                        sm: 50, // small 
-                        md: 72, // medium
-                        lg: 86, // large 
-                        xl: 100, // extra large screen
-                      ),
-                      color: Color.fromARGB(255, 248, 238, 224)),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: ' nice to meet you.',
-                          style: TextStyle(
-                            fontFamily: "Aileron",
-                            fontWeight: FontWeight.w200,
-                            fontSize: context.responsive<double>(
-                              72, // default
-                              sm: 50, // small 
-                              md: 72, // medium
-                              lg: 86, // large 
-                              xl: 100, // extra large screen
-                            ), 
-                            color: Color.fromARGB(255, 248, 238, 224))
-                      ),
-                    ]
-                  )
-                ),
-                RichText(
-                  text: TextSpan(
-                    text: 'I\'m',
-                    style: TextStyle(fontFamily: "Aileron", 
-                    fontWeight: FontWeight.w200, 
-                    fontSize: context.responsive<double>(
-                      86, // default
-                      sm: 72, // small 
-                      md: 86, // medium
-                      lg: 100, // large 
-                      xl: 132, // extra large screen, 
-                    ),
-                    color: Color.fromARGB(255, 248, 238, 224)),
-                    children: <TextSpan> [
-                      TextSpan(
-                        text: ' Christopher.',
+                  FadeInText(
+                    delayDuration: const Duration(seconds: 1),
+                    text: RichText(
+                      text: TextSpan(
+                        text: "Hi,",
                         style: TextStyle(
                           fontFamily: "Aileron", 
-                          fontWeight: FontWeight.w800, 
+                          fontWeight: FontWeight.w400, 
                           fontSize: context.responsive<double>(
-                            86, // default
-                            sm: 72, // small 
-                            md: 86, // medium
-                            lg: 100, // large 
-                            xl: 132, // extra large screen, 
+                            72, // default
+                            sm: 50, // small 
+                            md: 72, // medium
+                            lg: 86, // large 
+                            xl: 100, // extra large screen
                           ),
-                        )
-                       )
-                    ]
-                  )
-                ),
+                          color: Color.fromARGB(255, 248, 238, 224)),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: ' nice to meet you.',
+                              style: TextStyle(
+                                fontFamily: "Aileron",
+                                fontWeight: FontWeight.w200,
+                                fontSize: context.responsive<double>(
+                                  72, // default
+                                  sm: 50, // small 
+                                  md: 72, // medium
+                                  lg: 86, // large 
+                                  xl: 100, // extra large screen
+                                ), 
+                                color: Color.fromARGB(255, 248, 238, 224))
+                          ),
+                        ]
+                      )
+                    ),
+                  ),
+                  FadeInText(
+                    delayDuration: Duration(seconds: 1, milliseconds: 500), 
+                    text: RichText(
+                      text: TextSpan(
+                        text: 'I\'m',
+                        style: TextStyle(fontFamily: "Aileron", 
+                        fontWeight: FontWeight.w200, 
+                        fontSize: context.responsive<double>(
+                          86, // default
+                          sm: 72, // small 
+                          md: 86, // medium
+                          lg: 100, // large 
+                          xl: 132, // extra large screen, 
+                        ),
+                        color: Color.fromARGB(255, 248, 238, 224)),
+                        children: <TextSpan> [
+                          TextSpan(
+                            text: ' Christopher.',
+                            style: TextStyle(
+                              fontFamily: "Aileron", 
+                              fontWeight: FontWeight.w800, 
+                              fontSize: context.responsive<double>(
+                                86, // default
+                                sm: 72, // small 
+                                md: 86, // medium
+                                lg: 100, // large 
+                                xl: 132, // extra large screen, 
+                              ),
+                            )
+                          )
+                        ]
+                      )
+                    ),
+                  ) 
               ]),
             ),
             const Padding(
@@ -389,38 +396,41 @@ class ExperienceItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RichText(
-                  text: TextSpan(
-                    text: positionName,
-                    style: TextStyle(
-                      fontFamily: "Aileron",
-                      fontWeight: FontWeight.w600,
-                      fontSize: context.responsive<double>(
-                        28, // default
-                        sm: 24, // small 
-                        md: 28, // medium
-                        lg: 32, // large 
-                        xl: 36, // extra large screen
-                      ),
-                      color: Color.fromARGB(255, 248, 238, 224),
-                    ),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: ' @ $companyName',
-                        style: TextStyle(
-                          fontFamily: "Aileron",
-                          fontWeight: FontWeight.w200,
-                          fontSize: context.responsive<double>(
-                            28, // default
-                            sm: 24, // small 
-                            md: 28, // medium
-                            lg: 32, // large 
-                            xl: 36, // extra large screen
-                          ),
-                          color: Color.fromARGB(255, 248, 238, 224),
+                FadeInText(
+                  delayDuration: const Duration(seconds: 1), 
+                  text: RichText(
+                    text: TextSpan(
+                      text: positionName,
+                      style: TextStyle(
+                        fontFamily: "Aileron",
+                        fontWeight: FontWeight.w600,
+                        fontSize: context.responsive<double>(
+                          28, // default
+                          sm: 24, // small 
+                          md: 28, // medium
+                          lg: 32, // large 
+                          xl: 36, // extra large screen
                         ),
+                        color: Color.fromARGB(255, 248, 238, 224),
                       ),
-                    ],
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: ' @ $companyName',
+                          style: TextStyle(
+                            fontFamily: "Aileron",
+                            fontWeight: FontWeight.w200,
+                            fontSize: context.responsive<double>(
+                              28, // default
+                              sm: 24, // small 
+                              md: 28, // medium
+                              lg: 32, // large 
+                              xl: 36, // extra large screen
+                            ),
+                            color: Color.fromARGB(255, 248, 238, 224),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -742,21 +752,41 @@ class DoublePhotoFrame extends StatelessWidget{
 }
 
 class FadeInText extends StatefulWidget{
+  final Duration delayDuration;
+  final Duration animationDuration;
+  final RichText text;
+
+  const FadeInText({
+    Key? key, 
+    required this.delayDuration,
+    required this.text,
+    this.animationDuration = const Duration(seconds: 1)
+  }) : super(key: key);
+
   @override
   _FadeInTextState createState() => _FadeInTextState();
 }
 
 class _FadeInTextState extends State<FadeInText>{
   bool _isVisible = false;
-  
+
   @override
   void initState() {
     super.initState();
-
+    Future.delayed(widget.delayDuration, () {
+      setState(() {
+        _isVisible = true;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context){
-    return Row();
+    return AnimatedOpacity(
+        opacity: _isVisible ? 1.0 : 0.0, // Set opacity based on the flag
+        duration: widget.animationDuration, // Duration of the animation
+        curve: Curves.easeInOut, // Curve for the animation
+        child: widget.text,
+      );
   }
 }
