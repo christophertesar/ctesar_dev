@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -38,10 +40,8 @@ class PortfolioPage extends StatelessWidget {
         ),
       ),
       children: <Widget>[
-        TitlePage(),
+        const TitlePage(),
         // Each child represents a page in the portfolio
-        ExperiencePage(),
-
         SwiperPage(
           images: const [
             "assets/RescueReady.png",
@@ -63,8 +63,9 @@ class PortfolioPage extends StatelessWidget {
           ]
         ),
 
+        const ExperiencePage(),
+
         ContactsPage(),
-        // Add more PortfolioItem widgets for additional projects
       ],
     );
   }
@@ -201,7 +202,7 @@ class TitlePage extends StatelessWidget{
                             lg: 86, // large 
                             xl: 100, // extra large screen
                           ),
-                          color: Color.fromARGB(255, 248, 238, 224)),
+                          color: const Color.fromARGB(255, 248, 238, 224)),
                         children: <TextSpan>[
                           TextSpan(
                               text: ' nice to meet you.',
@@ -215,7 +216,7 @@ class TitlePage extends StatelessWidget{
                                   lg: 86, // large 
                                   xl: 100, // extra large screen
                                 ), 
-                                color: Color.fromARGB(255, 248, 238, 224))
+                                color: const Color.fromARGB(255, 248, 238, 224))
                           ),
                         ]
                       )
@@ -235,7 +236,7 @@ class TitlePage extends StatelessWidget{
                           lg: 100, // large 
                           xl: 132, // extra large screen, 
                         ),
-                        color: Color.fromARGB(255, 248, 238, 224)),
+                        color: const Color.fromARGB(255, 248, 238, 224)),
                         children: <TextSpan> [
                           TextSpan(
                             text: ' Christopher.',
@@ -254,7 +255,103 @@ class TitlePage extends StatelessWidget{
                         ]
                       )
                     ),
-                  ) 
+                  ),
+                  FadeInText(
+                    delayDuration: const Duration(seconds: 2), 
+                    text: RichText(
+                      text : TextSpan(
+                        text: 'I am a ',
+                        style: TextStyle(
+                          color: const Color.fromARGB(255, 248, 238, 224),
+                          fontFamily: "Aileron", 
+                          fontWeight: FontWeight.w200, 
+                          fontSize: context.responsive<double>(
+                            50, // default
+                            sm: 42, // small 
+                            md: 50, // medium
+                            lg: 72, // large 
+                            xl: 86, // extra large screen, 
+                          ),
+                        ),
+                        children: [
+                          WidgetSpan(
+                            child: CyclingText(
+                              texts: [
+                                RichText(
+                                  text: TextSpan(
+                                    text: 'tinkerer.',
+                                    style: TextStyle(
+                                      color: const Color.fromARGB(255, 255, 176, 176),
+                                      fontFamily: "Aileron", 
+                                      fontWeight: FontWeight.w400, 
+                                      fontSize: context.responsive<double>(
+                                        50, // default
+                                        sm: 42, // small 
+                                        md: 50, // medium
+                                        lg: 72, // large 
+                                        xl: 86, // extra large screen, 
+                                      )
+                                    ),
+                                  ),
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    text: 'software developer.',
+                                    style: TextStyle(
+                                      color: const Color.fromARGB(255, 255, 176, 176),
+                                      fontFamily: "Aileron", 
+                                      fontWeight: FontWeight.w400, 
+                                      fontSize: context.responsive<double>(
+                                        50, // default
+                                        sm: 42, // small 
+                                        md: 50, // medium
+                                        lg: 72, // large 
+                                        xl: 86, // extra large screen, 
+                                      )
+                                    ),
+                                  ),
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    text: 'embedded enthusiast.',
+                                    style: TextStyle(
+                                      color: const Color.fromARGB(255, 255, 176, 176),
+                                      fontFamily: "Aileron", 
+                                      fontWeight: FontWeight.w400, 
+                                      fontSize: context.responsive<double>(
+                                        50, // default
+                                        sm: 42, // small 
+                                        md: 50, // medium
+                                        lg: 72, // large 
+                                        xl: 86, // extra large screen, 
+                                      )
+                                    ),
+                                  ),
+                                ),
+                                RichText(
+                                  text: TextSpan(
+                                    text: 'music lover.',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 255, 176, 176),
+                                      fontFamily: "Aileron", 
+                                      fontWeight: FontWeight.w400, 
+                                      fontSize: context.responsive<double>(
+                                        50, // default
+                                        sm: 42, // small 
+                                        md: 50, // medium
+                                        lg: 72, // large 
+                                        xl: 86, // extra large screen, 
+                                      )
+                                    ),
+                                  ),
+                                ),
+                              ]
+                            )
+                          )
+                        ]
+                      ),
+                    ),
+                  ),
               ]),
             ),
             const Padding(
@@ -528,7 +625,7 @@ class MailToItem extends SocialItem{
           height: 25, // Adjust height as needed
           fit: BoxFit.cover, // Adjust image fitting as needed
           
-          color: Color.fromARGB(255, 248, 238, 224)
+          color: const Color.fromARGB(255, 248, 238, 224)
         ),
         const Padding(
           padding: EdgeInsets.only(
@@ -554,7 +651,7 @@ class MailToItem extends SocialItem{
                 lg: 14, // large 
                 xl: 16, // extra large screen
               ), 
-              color: Color.fromARGB(255, 248, 238, 224)),
+              color: const Color.fromARGB(255, 248, 238, 224)),
           ),
       ],
     );
@@ -584,7 +681,7 @@ class SocialItem extends StatelessWidget{
           height: 25, // Adjust height as needed
           fit: BoxFit.cover, // Adjust image fitting as needed
           
-          color: Color.fromARGB(255, 248, 238, 224)
+          color: const Color.fromARGB(255, 248, 238, 224)
         ),
         const Padding(
           padding: EdgeInsets.only(
@@ -610,7 +707,7 @@ class SocialItem extends StatelessWidget{
                 lg: 14, // large 
                 xl: 16, // extra large screen
               ), 
-              color: Color.fromARGB(255, 248, 238, 224)),
+              color: const Color.fromARGB(255, 248, 238, 224)),
           ),
       ],
     );
@@ -649,7 +746,7 @@ class HoverColorChangeWidget extends StatefulWidget {
 }
 
 class _HoverColorChangeWidgetState extends State<HoverColorChangeWidget> {
-  Color textColor = Color.fromARGB(255, 248, 238, 224);
+  Color textColor = const Color.fromARGB(255, 248, 238, 224);
 
   @override
   Widget build(BuildContext context) {
@@ -661,7 +758,7 @@ class _HoverColorChangeWidgetState extends State<HoverColorChangeWidget> {
       },
       onExit: (event) {
         setState(() {
-          textColor = Color.fromARGB(255, 248, 238, 224); // Or whatever your normal color is
+          textColor = const Color.fromARGB(255, 248, 238, 224); // Or whatever your normal color is
         });
       },
       child: InkWell(
@@ -791,4 +888,52 @@ class _FadeInTextState extends State<FadeInText>{
   }
 }
 
-// class CyclingText extends StatefulWidget
+class CyclingText extends StatefulWidget{
+  final List<RichText> texts;
+  final Duration onScreen = const Duration(seconds: 3);
+
+  const CyclingText({
+    Key? key,
+    required this.texts,
+  }) : super(key: key);
+
+  @override
+  _CyclingTextState createState() => _CyclingTextState();
+}
+
+class _CyclingTextState extends State<CyclingText>{
+  int _currentIndex = 0;
+  late Timer _timer;
+  double _opacity = 0.0;
+
+  @override
+  Widget build(BuildContext context){
+    return AnimatedOpacity(
+      opacity: _opacity,
+      duration: const Duration(milliseconds: 500),
+      child: widget.texts[_currentIndex]
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer(){
+    _timer = Timer.periodic(widget.onScreen, (timer) {
+      setState(() {
+        _opacity = 1.0; // Fade in
+        _currentIndex = (_currentIndex + 1) % widget.texts.length;
+      });
+
+      Timer(const Duration(milliseconds: 2000), () {
+        setState(() {
+          _opacity = 0.0; // Fade out
+        });
+      });
+    });
+  }
+
+}
