@@ -6,7 +6,7 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {"assets/AssetManifest.bin": "f34e440de4cad0b9d3ce208c79ab4afe",
 "assets/AssetManifest.bin.json": "edb9c52c7324060cbd3d1716a303a25d",
 "assets/AssetManifest.json": "e44f68517bd1e33d770efc54c61407e4",
-"assets/assets/email_icon.svg": "231463f429fddfcb3f3ecca6e5af1ae3",
+"assets/assets/email_icon.svg": "b6fe67332aa15fc2be0fe2a7448188d4",
 "assets/assets/Eznote.png": "b98d9705164bc0d81fd32ce5627352c0",
 "assets/assets/github_icon.svg": "e2d923b65e4fa42b251a32b2bac27f4b",
 "assets/assets/linkedin_icon.svg": "dbeb8c6d7ba479409630af257b0eb32f",
@@ -42,9 +42,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "f34e440de4cad0b9d3ce208c79ab4afe
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "846635e0686b453e997e3817ce58f159",
-"/": "846635e0686b453e997e3817ce58f159",
-"main.dart.js": "e198cb242059695e323a06befb10cd72",
+"index.html": "d64bade8d455f15ae7ff6ec256d68a54",
+"/": "d64bade8d455f15ae7ff6ec256d68a54",
+"main.dart.js": "e9ce4397649b4a3578340f4512a2658a",
 "manifest.json": "9583ebe54188295a4768ae1aa040030b",
 "version.json": "cc1fa9cce5af273c0909d105387fee89"};
 // The application shell files that are downloaded before a service worker can
