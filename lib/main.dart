@@ -50,10 +50,10 @@ class PortfolioPage extends StatelessWidget {
             "assets/motor_torque.png"
           ],
           text: const [
-            "SFU EC 1st Place: RescueReady",
-            "WEC 2024 1st Place: EzNote",
-            "Old School Runescape in VR",
-            "Embedded Motor Speed/Torque Sensor"
+            "SFU EC 2024 1st Place: RescueReady \n\nA project made with my team for the Simon Fraser University Engineering Programming Competition where we won first place. We designed Rescue Ready, an app that connects the user with a volunteer during a natural disaster.",
+            "WEC 2024 1st Place: EzNote \n\nAt the Western Engineering Competition, we developed an app that helps people with cognitive disabilities take notes in a school or work environment. We impemented Text-To-Speech, Speech-To-Text, text summarization and a UI in Python using Tkinter.",
+            "Old School Runescape in VR \n\nOSRS in VR allows adventurers to explore Gilenor in VR! Supported on the Meta Quest platform, users can interact with items, enjoy the scenery and find monsters walking around.",
+            "Embedded Motor Speed/Torque Sensor \n\nMy final project at the British Columbia Institute of Technology. Using a TI MSP432 Microcontroller, we using an optical encoder disc and two optical sensors to measure the speed of a synchronous motor. We also had a load cell that measured the output torque of the motor."
           ],
           link: [
             Uri.parse("https://github.com/amot-dev/RescueReady"),
@@ -71,7 +71,7 @@ class PortfolioPage extends StatelessWidget {
   }
 }
 
-class SwiperPage extends StatelessWidget{
+class SwiperPage extends StatefulWidget{
   final List<String> images;
   final List<String> text;
   final List<Uri> link;
@@ -84,6 +84,24 @@ class SwiperPage extends StatelessWidget{
       required this.link
     }
     ) : super(key: key);
+  
+  @override
+  _SwiperPageState createState() => _SwiperPageState();
+}
+
+class _SwiperPageState extends State<SwiperPage>{
+  String? currentText;
+
+  @override
+  void initState() {
+    super.initState();
+    currentText = widget.text[0];
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,66 +127,69 @@ class SwiperPage extends StatelessWidget{
             color: ColorScheme.whiteTextColor
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: context.responsive<double>(
-              30, // default
-              sm: 20, // small 
-              md: 30, // medium
-              lg: 40, // large 
-              xl: 50, // extra large screen
-          )),
-        ),
-        Swiper(
-          onTap: (index) => launchUrl(link[index]),
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                DoublePhotoFrame(
-                  innerBorder: ColorScheme.innerBorderColor, 
-                  outerBorder: ColorScheme.outerBorderColor,
-                  logoAssetPath: images[index],
-                  borderRadius: 40,
-                  borderSpace: MediaQuery.of(context).size.width * 0.015,
-                  imageSizeSm: MediaQuery.of(context).size.width * 0.2,
-                  imageSizeMd: MediaQuery.of(context).size.width * 0.2,
-                  imageSizeLg: MediaQuery.of(context).size.width * 0.2,
-                  imageSizeXl: MediaQuery.of(context).size.width * 0.2,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: context.responsive<double>(
-                      5, // default
-                      sm: 5, // small 
-                      md: 5, // medium
-                      lg: 5, // large 
-                      xl: 5, // extra large screen
-                  )),
-                ),
-                Text(
-                  text[index],
-                  style: TextStyle(
-                    fontFamily: "Aileron",
-                    fontWeight: FontWeight.w200,
-                    fontSize: context.responsive<double>(
-                      14, // default
-                      sm: 14, // small 
-                      md: 14, // medium
-                      lg: 16, // large 
-                      xl: 16, // extra large screen
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: context.responsive<double>(
+                  MediaQuery.of(context).size.width * 0.08, // default
+                  sm: MediaQuery.of(context).size.width * 0.08, // small 
+                  md: MediaQuery.of(context).size.width * 0.08, // medium
+                  lg: MediaQuery.of(context).size.width * 0.08, // large 
+                  xl: MediaQuery.of(context).size.width * 0.08, // extra large screen
+              )),
+            ),
+            Swiper(
+              onTap: (index) => launchUrl(widget.link[(index - 1) % widget.link.length]),
+              onIndexChanged: (index) => {setState(() => 
+                currentText = widget.text[index]
+              )},
+              itemBuilder: (BuildContext context, int index) {
+                return Row(
+                  children: [
+                    DoublePhotoFrame(
+                      innerBorder: ColorScheme.innerBorderColor, 
+                      outerBorder: ColorScheme.outerBorderColor,
+                      logoAssetPath: widget.images[index],
+                      borderRadius: 40,
+                      borderSpace: MediaQuery.of(context).size.width * 0.015,
+                      imageSizeSm: MediaQuery.of(context).size.width * 0.2,
+                      imageSizeMd: MediaQuery.of(context).size.width * 0.2,
+                      imageSizeLg: MediaQuery.of(context).size.width * 0.2,
+                      imageSizeXl: MediaQuery.of(context).size.width * 0.2,
                     ),
-                    color: ColorScheme.whiteTextColor,
-                  )
-                ),
-              ]
-            );
-          },
-          itemCount: images.length,
-          itemWidth: MediaQuery.of(context).size.width * 0.7,
-          itemHeight: MediaQuery.of(context).size.height * 0.7,
-          layout: SwiperLayout.STACK,
-          autoplay: true,
+                  ]
+                );
+              },
+              itemCount: widget.images.length,
+              itemWidth: MediaQuery.of(context).size.width * 0.3,
+              itemHeight: MediaQuery.of(context).size.height * 0.6,
+              layout: SwiperLayout.TINDER,
+              autoplay: true,
+              autoplayDelay: 9000,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: Text(
+                currentText!,
+                style: TextStyle(
+                  fontFamily: "Aileron",
+                  fontWeight: FontWeight.w200,
+                  fontSize: context.responsive<double>(
+                    20, // default
+                    sm: 18, // small 
+                    md: 20, // medium
+                    lg: 22, // large 
+                    xl: 24, // extra large screen
+                  ),
+                  color: ColorScheme.whiteTextColor,
+                )
+              ) 
+            )
+          ],
         )
-        ]
-      )
+        ],
+      ),
     );
   }
 }
@@ -178,7 +199,6 @@ class TitlePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
@@ -293,7 +313,6 @@ class TitlePage extends StatelessWidget{
                                 'problem-solver.', // TODO: Hardcode this elsewhere. Code smell.
                                 'software developer.',
                                 'embedded enthusiast.',
-                                'lifelong learner.'
                                 ].map((text) => 
                                 RichText(
                                   text: TextSpan(
@@ -386,8 +405,8 @@ class ExperiencePage extends StatelessWidget{
           logoAssetPath: 'assets/LMI_logo.jpg',
           positionName: 'Software Engineer Co-op',
           companyName: 'LMI Technologies',
+          introduction: 'At LMI Technologes, I was a part of the Runtime Quality team where I developed and maintained features for the company Automated Test Framework API in Python. Some other things I accomplished: ',
           bulletPoints: [
-            'Developed and maintained features for the company Automated Test Framework API in Python.',
             'Integrated KPIs and logging into the sensor stability test engine which identified a memory leak and enhanced performance monitoring.',
             'Wrote 60+ automated regression and stability tests spanning multiple sensor product lines covering core features.',
             'Developed an interface for Firmware‑level APIs into the ATF using ctypes, enabling team to access lower‑level sensor information.',
@@ -399,6 +418,7 @@ class ExperiencePage extends StatelessWidget{
           logoAssetPath: 'assets/SFU_logo.jpg',
           positionName: 'Undergraduate Reasearch Assistant',
           companyName: 'Simon Fraser University Faculty of Applied Science',
+          introduction: 'Under Professor Rodney Vaughan and Chris Hynes, PhD. I worked on creating a system that obtains and sends data from a three-loop antenna system using embedded systems.',
           bulletPoints: [
             "Optimized UART transmission via BLE on multiple NRF52840 development boards connected together using Python and CircuitPython",
             "Utilized C to optimize firmware, achieving 5‑10x program speed up and improved data throughput and connection consistency.",
@@ -415,6 +435,7 @@ class ExperienceItem extends StatelessWidget {
   final String logoAssetPath;
   final String positionName;
   final String companyName;
+  final String introduction;
   final List<String> bulletPoints;
 
   const ExperienceItem({
@@ -422,6 +443,7 @@ class ExperienceItem extends StatelessWidget {
     required this.logoAssetPath,
     required this.positionName,
     required this.companyName,
+    required this.introduction,
     required this.bulletPoints,
   }) : super(key: key);
 
@@ -511,26 +533,41 @@ class ExperienceItem extends StatelessWidget {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: bulletPoints
-                      .map(
-                        (point) => Text(
-                          '• $point',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: "Aileron",
-                            fontWeight: FontWeight.w200,
-                            fontSize: context.responsive<double>(
-                              20, // default
-                              sm: 18, // small 
-                              md: 20, // medium
-                              lg: 22, // large 
-                              xl: 24, // extra large screen
-                            ),
-                            color: ColorScheme.whiteTextColor,
-                          ),
+                  children: [
+                    Text(
+                      "$introduction\n",
+                      style: TextStyle(
+                        fontFamily: "Aileron",
+                        fontWeight: FontWeight.w200,
+                        fontSize: context.responsive<double>(
+                          20, // default
+                          sm: 18, // small 
+                          md: 20, // medium
+                          lg: 22, // large 
+                          xl: 24, // extra large screen
                         ),
-                      )
-                      .toList(),
+                        color: ColorScheme.whiteTextColor,
+                      ),
+                    )]..addAll(bulletPoints.map(
+                      (point) => Text(
+                        '• $point',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontFamily: "Aileron",
+                          fontWeight: FontWeight.w200,
+                          fontSize: context.responsive<double>(
+                            20, // default
+                            sm: 18, // small 
+                            md: 20, // medium
+                            lg: 22, // large 
+                            xl: 24, // extra large screen
+                          ),
+                          color: ColorScheme.whiteTextColor,
+                        ),
+                      ),
+                    )
+                    .toList(),
+                  )
                 ),
               ],
             ),
@@ -914,7 +951,7 @@ class _CyclingTextState extends State<CyclingText>{
 
 @immutable
 class ColorScheme{
-  static const whiteTextColor =Color.fromARGB(255, 248, 235, 218);
+  static const whiteTextColor =Color.fromARGB(255, 248, 233, 213);
   static const outerBorderColor =Color.fromARGB(255, 252, 103, 54);
   static const innerBorderColor =Color.fromARGB(255, 255, 176, 176);
   static const backgroundColor =Color.fromARGB(255, 24, 40, 75);
