@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:simple_animations/simple_animations.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 void main() {
   runApp(const MyPortfolioApp());
@@ -44,16 +44,22 @@ class PortfolioPage extends StatelessWidget {
         // Each child represents a page in the portfolio
         SwiperPage(
           images: const [
-            "assets/RescueReady.png",
-            "assets/Eznote.png",
-            "assets/osrs_vr.png",
-            "assets/motor_torque.png"
+            "assets/RescueReady.jpg",
+            "assets/Eznote.jpg",
+            "assets/osrs_vr.jpg",
+            "assets/motor_torque.jpg"
+          ],
+          titles: const [
+            "SFU EC 2024 1st Place: RescueReady",
+            "WEC 2024 1st Place: EzNote ",
+            "Old School Runescape in VR",
+            "Embedded Motor Speed/Torque Sensor",
           ],
           text: const [
-            "SFU EC 2024 1st Place: RescueReady \n\nA project made with my team for the Simon Fraser University Engineering Programming Competition where we won first place. We designed Rescue Ready, an app that connects the user with a volunteer during a natural disaster.",
-            "WEC 2024 1st Place: EzNote \n\nAt the Western Engineering Competition, we developed an app that helps people with cognitive disabilities take notes in a school or work environment. We impemented Text-To-Speech, Speech-To-Text, text summarization and a UI in Python using Tkinter.",
-            "Old School Runescape in VR \n\nOSRS in VR allows adventurers to explore Gilenor in VR! Supported on the Meta Quest platform, users can interact with items, enjoy the scenery and find monsters walking around.",
-            "Embedded Motor Speed/Torque Sensor \n\nMy final project at the British Columbia Institute of Technology. Using a TI MSP432 Microcontroller, we using an optical encoder disc and two optical sensors to measure the speed of a synchronous motor. We also had a load cell that measured the output torque of the motor."
+            "A project made with my team for the Simon Fraser University Engineering Programming Competition where we won first place. We designed Rescue Ready, an app that connects the user with a volunteer during a natural disaster.",
+            "At the Western Engineering Competition, we developed an app that helps people with cognitive disabilities take notes in a school or work environment. We impemented Text-To-Speech, Speech-To-Text, text summarization and a UI in Python using Tkinter.",
+            "OSRS in VR allows adventurers to explore Gilenor in VR! Supported on the Meta Quest platform, users can interact with items, enjoy the scenery and find monsters walking around.",
+            "My final project at the British Columbia Institute of Technology. Using a TI MSP432 Microcontroller, we using an optical encoder disc and two optical sensors to measure the speed of a synchronous motor. We also had a load cell that measured the output torque of the motor."
           ],
           link: [
             Uri.parse("https://github.com/amot-dev/RescueReady"),
@@ -73,6 +79,7 @@ class PortfolioPage extends StatelessWidget {
 
 class SwiperPage extends StatefulWidget{
   final List<String> images;
+  final List<String> titles;
   final List<String> text;
   final List<Uri> link;
 
@@ -81,7 +88,8 @@ class SwiperPage extends StatefulWidget{
       Key? key,
       required this.images,
       required this.text,
-      required this.link
+      required this.link,
+      required this.titles
     }
     ) : super(key: key);
   
@@ -90,12 +98,15 @@ class SwiperPage extends StatefulWidget{
 }
 
 class _SwiperPageState extends State<SwiperPage>{
+  String? currentTitle;
   String? currentText;
+  int index = 0;
 
   @override
   void initState() {
     super.initState();
     currentText = widget.text[0];
+    currentTitle = widget.titles[0];
   }
 
   @override
@@ -139,52 +150,92 @@ class _SwiperPageState extends State<SwiperPage>{
                   xl: MediaQuery.of(context).size.width * 0.08, // extra large screen
               )),
             ),
-            Swiper(
-              onTap: (index) => launchUrl(widget.link[(index - 1) % widget.link.length]),
-              onIndexChanged: (index) => {setState(() => 
-                currentText = widget.text[index]
-              )},
-              itemBuilder: (BuildContext context, int index) {
-                return Row(
-                  children: [
-                    DoublePhotoFrame(
-                      innerBorder: ColorScheme.innerBorderColor, 
-                      outerBorder: ColorScheme.outerBorderColor,
-                      logoAssetPath: widget.images[index],
-                      borderRadius: 40,
-                      borderSpace: MediaQuery.of(context).size.width * 0.015,
-                      imageSizeSm: MediaQuery.of(context).size.width * 0.2,
-                      imageSizeMd: MediaQuery.of(context).size.width * 0.2,
-                      imageSizeLg: MediaQuery.of(context).size.width * 0.2,
-                      imageSizeXl: MediaQuery.of(context).size.width * 0.2,
-                    ),
-                  ]
-                );
-              },
-              itemCount: widget.images.length,
-              itemWidth: MediaQuery.of(context).size.width * 0.3,
-              itemHeight: MediaQuery.of(context).size.height * 0.6,
-              layout: SwiperLayout.TINDER,
-              autoplay: true,
-              autoplayDelay: 9000,
+            Column(
+              children: [
+                Swiper(
+                  onTap: (index) => launchUrl(widget.link[(index - 1) % widget.link.length]),
+                  onIndexChanged: (index) => {setState(() => 
+                    {
+                    currentText = widget.text[index],
+                    currentTitle = widget.titles[index],
+                    this.index = index
+                    }
+                  )},
+                  itemBuilder: (BuildContext context, int index) {
+                    return Column(
+                      children: [
+                        DoublePhotoFrame(
+                          innerBorder: ColorScheme.innerBorderColor, 
+                          outerBorder: ColorScheme.outerBorderColor,
+                          logoAssetPath: widget.images[index],
+                          borderRadius: 40,
+                          borderSpace: MediaQuery.of(context).size.width * 0.015,
+                          imageSizeSm: MediaQuery.of(context).size.width * 0.2,
+                          imageSizeMd: MediaQuery.of(context).size.width * 0.2,
+                          imageSizeLg: MediaQuery.of(context).size.width * 0.2,
+                          imageSizeXl: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                      ]
+                    );
+                  },
+                  itemCount: widget.images.length,
+                  itemWidth: MediaQuery.of(context).size.width * 0.3,
+                  itemHeight: MediaQuery.of(context).size.height * 0.6,
+                  layout: SwiperLayout.TINDER,
+                  autoplay: true,
+                  autoplayDelay: 9000,
+                ),
+                AnimatedSmoothIndicator(  
+                  activeIndex: index,  
+                  count: widget.text.length,  
+                  effect: const WormEffect(
+                    dotColor: ColorScheme.innerBorderColor,
+                    activeDotColor: ColorScheme.outerBorderColor
+                  ),  
+                ) 
+              ],
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.5,
-              child: Text(
-                currentText!,
-                style: TextStyle(
-                  fontFamily: "Aileron",
-                  fontWeight: FontWeight.w200,
-                  fontSize: context.responsive<double>(
-                    20, // default
-                    sm: 18, // small 
-                    md: 20, // medium
-                    lg: 22, // large 
-                    xl: 24, // extra large screen
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    currentTitle!,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontFamily: "Aileron",
+                      fontWeight: FontWeight.w600,
+                      fontSize: context.responsive<double>(
+                        24, // default
+                        sm: 22, // small 
+                        md: 24, // medium
+                        lg: 26, // large 
+                        xl: 28, // extra large screen
+                      ),
+                      color: ColorScheme.whiteTextColor,
+                    )
                   ),
-                  color: ColorScheme.whiteTextColor,
-                )
-              ) 
+                  Text(
+                    currentText!,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontFamily: "Aileron",
+                      fontWeight: FontWeight.w200,
+                      fontSize: context.responsive<double>(
+                        20, // default
+                        sm: 18, // small 
+                        md: 20, // medium
+                        lg: 22, // large 
+                        xl: 24, // extra large screen
+                      ),
+                      color: ColorScheme.whiteTextColor,
+                    )
+                  )
+                ],
+              )
+               
             )
           ],
         )
@@ -418,7 +469,7 @@ class ExperiencePage extends StatelessWidget{
           logoAssetPath: 'assets/SFU_logo.jpg',
           positionName: 'Undergraduate Reasearch Assistant',
           companyName: 'Simon Fraser University Faculty of Applied Science',
-          introduction: 'Under Professor Rodney Vaughan and Chris Hynes, PhD. I worked on creating a system that obtains and sends data from a three-loop antenna system using embedded systems.',
+          introduction: 'Under Professor Rodney Vaughan and Chris Hynes PhD, I worked on creating a system that obtains and sends data from a three-loop antenna system using microcontrollers.',
           bulletPoints: [
             "Optimized UART transmission via BLE on multiple NRF52840 development boards connected together using Python and CircuitPython",
             "Utilized C to optimize firmware, achieving 5‑10x program speed up and improved data throughput and connection consistency.",
@@ -883,6 +934,11 @@ class _FadeInTextState extends State<FadeInText>{
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context){
     return AnimatedOpacity(
         opacity: _isVisible ? 1.0 : 0.0, // Set opacity based on the flag
@@ -940,9 +996,9 @@ class _CyclingTextState extends State<CyclingText>{
       });
 
       Timer(const Duration(milliseconds: 2000), () {
-        setState(() {
+        mounted ? setState(() {
           _opacity = 0.0; // Fade out
-        });
+        }) : null;
       });
     });
   }

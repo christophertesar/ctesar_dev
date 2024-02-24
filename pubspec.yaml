@@ -34,6 +34,7 @@ dependencies:
   url_launcher: ^6.2.4
   card_swiper : ^3.0.1
   simple_animations : ^5.0.2
+  smooth_page_indicator: ^1.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -68,16 +69,16 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - assets/self.png
+    - assets/self.jpg
     - assets/LMI_logo.jpg
     - assets/SFU_logo.jpg
     - assets/linkedin_icon.svg
     - assets/email_icon.svg
     - assets/github_icon.svg
-    - assets/Eznote.png
-    - assets/osrs_vr.png
-    - assets/RescueReady.png
-    - assets/motor_torque.png
+    - assets/Eznote.jpg
+    - assets/osrs_vr.jpg
+    - assets/RescueReady.jpg
+    - assets/motor_torque.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
