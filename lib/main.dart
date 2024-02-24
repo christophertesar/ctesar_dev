@@ -333,7 +333,7 @@ class TitlePage extends StatelessWidget{
                   DoublePhotoFrame(
                     innerBorder: ColorScheme.innerBorderColor, 
                     outerBorder: ColorScheme.outerBorderColor, 
-                    logoAssetPath: 'assets/self.png',
+                    logoAssetPath: 'assets/self.jpg',
                     imageSizeSm: MediaQuery.of(context).size.width * 0.3,
                     imageSizeMd: MediaQuery.of(context).size.width * 0.3,
                     imageSizeLg: MediaQuery.of(context).size.width * 0.3,
