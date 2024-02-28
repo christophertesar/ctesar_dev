@@ -171,125 +171,139 @@ class _SwiperPageState extends State<SwiperPage>{
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children:[
-        Text(
-          textAlign: TextAlign.left,
-          "Projects",
-          style: TextStyle(
-            fontFamily: "Aileron", 
-            fontWeight: FontWeight.w800, 
-            fontSize: context.responsive<double>(
-              72, // default
-              sm: 50, // small 
-              md: 72, // medium
-              lg: 86, // large 
-              xl: 100, // extra large screen
-            ), 
-            color: ColorScheme.whiteTextColor
+          Expanded(
+            flex: 2,
+            child: Text(
+              textAlign: TextAlign.left,
+              "Projects",
+              style: TextStyle(
+                fontFamily: "Aileron", 
+                fontWeight: FontWeight.w800, 
+                fontSize: context.responsive<double>(
+                  72, // default
+                  sm: 50, // small 
+                  md: 72, // medium
+                  lg: 86, // large 
+                  xl: 100, // extra large screen
+                ), 
+                color: ColorScheme.whiteTextColor
+              ),
+            ),
           ),
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: context.responsive<double>(
-                  MediaQuery.of(context).size.width * 0.08, // default
-                  sm: MediaQuery.of(context).size.width * 0.08, // small 
-                  md: MediaQuery.of(context).size.width * 0.08, // medium
-                  lg: MediaQuery.of(context).size.width * 0.08, // large 
-                  xl: MediaQuery.of(context).size.width * 0.08, // extra large screen
-              )),
-            ),
-            Column(
+          Expanded(
+            flex: 8,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Swiper(
-                  onTap: (index) => launchUrl(widget.link[(index - 1) % widget.link.length]),
-                  onIndexChanged: (index) => {setState(() => 
-                    {
-                    currentText = widget.text[index],
-                    currentTitle = widget.titles[index],
-                    this.index = index
-                    }
-                  )},
-                  itemBuilder: (BuildContext context, int index) {
-                    return Column(
-                      children: [
-                        DoublePhotoFrame(
-                          innerBorder: ColorScheme.innerBorderColor, 
-                          outerBorder: ColorScheme.outerBorderColor,
-                          logoAssetPath: widget.images[index],
-                          borderRadius: 40,
-                          borderSpace: MediaQuery.of(context).size.width * 0.015,
-                          imageSizeSm: MediaQuery.of(context).size.width * 0.2,
-                          imageSizeMd: MediaQuery.of(context).size.width * 0.2,
-                          imageSizeLg: MediaQuery.of(context).size.width * 0.2,
-                          imageSizeXl: MediaQuery.of(context).size.width * 0.2,
-                        ),
-                      ]
-                    );
-                  },
-                  itemCount: widget.images.length,
-                  itemWidth: MediaQuery.of(context).size.width * 0.3,
-                  itemHeight: MediaQuery.of(context).size.height * 0.6,
-                  layout: SwiperLayout.TINDER,
-                  autoplay: true,
-                  autoplayDelay: 9000,
+                Padding(
+                  padding: EdgeInsets.only(left: context.responsive<double>(
+                      MediaQuery.of(context).size.width * 0.08, // default
+                      sm: MediaQuery.of(context).size.width * 0.08, // small 
+                      md: MediaQuery.of(context).size.width * 0.08, // medium
+                      lg: MediaQuery.of(context).size.width * 0.08, // large 
+                      xl: MediaQuery.of(context).size.width * 0.08, // extra large screen
+                  )),
                 ),
-                AnimatedSmoothIndicator(  
-                  activeIndex: index,  
-                  count: widget.text.length,  
-                  effect: const WormEffect(
-                    dotColor: ColorScheme.innerBorderColor,
-                    activeDotColor: ColorScheme.outerBorderColor
-                  ),  
-                ) 
-              ],
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    currentTitle!,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontFamily: "Aileron",
-                      fontWeight: FontWeight.w600,
-                      fontSize: context.responsive<double>(
-                        24, // default
-                        sm: 22, // small 
-                        md: 24, // medium
-                        lg: 26, // large 
-                        xl: 28, // extra large screen
+                Column(
+                  children: [
+                    Swiper(
+                      onTap: (index) => launchUrl(widget.link[(index - 1) % widget.link.length]),
+                      onIndexChanged: (index) => {setState(() => 
+                        {
+                        currentText = widget.text[index],
+                        currentTitle = widget.titles[index],
+                        this.index = index
+                        }
+                      )},
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            DoublePhotoFrame(
+                              innerBorder: ColorScheme.innerBorderColor, 
+                              outerBorder: ColorScheme.outerBorderColor,
+                              logoAssetPath: widget.images[index],
+                              borderRadius: 40,
+                              borderSpace: MediaQuery.of(context).size.width * 0.015,
+                              imageSizeSm: MediaQuery.of(context).size.width * 0.2,
+                              imageSizeMd: MediaQuery.of(context).size.width * 0.2,
+                              imageSizeLg: MediaQuery.of(context).size.width * 0.2,
+                              imageSizeXl: MediaQuery.of(context).size.width * 0.2,
+                            ),
+                          ]
+                        );
+                      },
+                      itemCount: widget.images.length,
+                      itemWidth: MediaQuery.of(context).size.width * 0.3,
+                      itemHeight: MediaQuery.of(context).size.height * 0.6,
+                      layout: SwiperLayout.TINDER,
+                      autoplay: true,
+                      autoplayDelay: 9000,
+                    ),
+                    AnimatedSmoothIndicator(  
+                      activeIndex: index,  
+                      count: widget.text.length,  
+                      effect: const WormEffect(
+                        dotColor: ColorScheme.innerBorderColor,
+                        activeDotColor: ColorScheme.outerBorderColor
+                      ),  
+                    ) 
+                  ],
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Container()
                       ),
-                      color: ColorScheme.whiteTextColor,
-                    )
-                  ),
-                  Text(
-                    currentText!,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontFamily: "Aileron",
-                      fontWeight: FontWeight.w200,
-                      fontSize: context.responsive<double>(
-                        20, // default
-                        sm: 18, // small 
-                        md: 20, // medium
-                        lg: 22, // large 
-                        xl: 24, // extra large screen
+                      Text(
+                        currentTitle!,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontFamily: "Aileron",
+                          fontWeight: FontWeight.w600,
+                          fontSize: context.responsive<double>(
+                            24, // default
+                            sm: 22, // small 
+                            md: 24, // medium
+                            lg: 26, // large 
+                            xl: 28, // extra large screen
+                          ),
+                          color: ColorScheme.whiteTextColor,
+                        )
                       ),
-                      color: ColorScheme.whiteTextColor,
-                    )
+                      Text(
+                        currentText!,
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          fontFamily: "Aileron",
+                          fontWeight: FontWeight.w200,
+                          fontSize: context.responsive<double>(
+                            20, // default
+                            sm: 18, // small 
+                            md: 20, // medium
+                            lg: 22, // large 
+                            xl: 24, // extra large screen
+                          ),
+                          color: ColorScheme.whiteTextColor,
+                        )
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Container()
+                      ),
+                    ],
                   )
-                ],
-              )
-               
-            )
-          ],
-        )
-        ],
-      ),
+                )
+              ],
+            )    
+          )
+        ]
+      )
     );
   }
 }
@@ -358,11 +372,11 @@ class TitlePage extends StatelessWidget {
                         style: TextStyle(fontFamily: "Aileron", 
                         fontWeight: FontWeight.w200, 
                         fontSize: context.responsive<double>(
-                          86, // default
-                          sm: 72, // small 
-                          md: 86, // medium
-                          lg: 100, // large 
-                          xl: 132, // extra large screen, 
+                          72, // default
+                          sm: 54, // small 
+                          md: 72, // medium
+                          lg: 86, // large 
+                          xl: 100, // extra large screen,
                         ),
                         color: ColorScheme.whiteTextColor),
                         children: <TextSpan> [
