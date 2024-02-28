@@ -15,10 +15,59 @@ class MyPortfolioApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 16, 29, 58),
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: IconButton(
+                icon: SvgPicture.asset(
+                  'assets/linkedin_icon.svg',
+                  width: 24,
+                  height: 24,
+                ),
+                onPressed: () {
+                  launchUrl(Uri.parse('https://www.linkedin.com/in/christopher-tesar-9853a113b/'));
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: IconButton(
+                icon: SvgPicture.asset(
+                  'assets/github_icon.svg',
+                  width: 24,
+                  height: 24,
+                ),
+                onPressed: () {
+                  launchUrl(Uri.parse('https://github.com/christophertesar'));
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: IconButton(
+                icon: SvgPicture.asset(
+                  'assets/email_icon.svg',
+                  width: 24,
+                  height: 24,
+                ),
+                onPressed: () {
+                  launchUrl(
+                    Uri(
+                      scheme: 'mailto',
+                      path: "ctesar@sfu.ca"
+                    )
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
         backgroundColor: ColorScheme.backgroundColor,
-        body: PortfolioPage(),
+        body: const PortfolioPage(),
       ),
     );
   }
@@ -245,7 +294,7 @@ class _SwiperPageState extends State<SwiperPage>{
   }
 }
 
-class TitlePage extends StatelessWidget{
+class TitlePage extends StatelessWidget {
   const TitlePage({Key? key}) : super(key: key);
 
   @override
@@ -255,10 +304,12 @@ class TitlePage extends StatelessWidget{
       height: MediaQuery.of(context).size.height,
       alignment: Alignment.topLeft,
       child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 5,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 40.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -333,90 +384,76 @@ class TitlePage extends StatelessWidget{
                       )
                     ),
                   ),
-                  Row(
-                    children: [
-                      FadeInText(
-                        delayDuration: const Duration(seconds: 2), 
-                        text: RichText(
-                          text : TextSpan(
-                            text: 'I am a ',
-                            style: TextStyle(
-                              color: ColorScheme.whiteTextColor,
-                              fontFamily: "Aileron", 
-                              fontWeight: FontWeight.w200, 
-                              fontSize: context.responsive<double>(
-                                50, // default
-                                sm: 42, // small 
-                                md: 50, // medium
-                                lg: 72, // large 
-                                xl: 86, // extra large screen, 
-                              ),
-                            ),
+                  FadeInText(
+                    delayDuration: const Duration(seconds: 2), 
+                    text: RichText(
+                      text : TextSpan(
+                        text: 'I am a ',
+                        style: TextStyle(
+                          color: ColorScheme.whiteTextColor,
+                          fontFamily: "Aileron", 
+                          fontWeight: FontWeight.w200, 
+                          fontSize: context.responsive<double>(
+                            50, // default
+                            sm: 42, // small 
+                            md: 50, // medium
+                            lg: 72, // large 
+                            xl: 86, // extra large screen, 
                           ),
                         ),
-                      ),
-                      FadeInText(
-                        delayDuration: const Duration(seconds: 2), 
-                        text: RichText(
-                          text: WidgetSpan(
+                        children: [
+                          WidgetSpan(
                             child: CyclingText(
-                              texts: [
-                                'problem-solver.', // TODO: Hardcode this elsewhere. Code smell.
-                                'software developer.',
-                                'embedded enthusiast.',
-                                ].map((text) => 
-                                RichText(
-                                  text: TextSpan(
-                                    text: text,
-                                    style: TextStyle(
-                                      color: ColorScheme.innerBorderColor,
-                                      fontFamily: "Aileron", 
-                                      fontWeight: FontWeight.w400, 
-                                      fontSize: context.responsive<double>(
-                                        50, // default
-                                        sm: 42, // small 
-                                        md: 50, // medium
-                                        lg: 72, // large 
-                                        xl: 86, // extra large screen, 
-                                      )
-                                    ),
+                            texts: [
+                              'problem-solver.', // TODO: Hardcode this elsewhere. Code smell.
+                              'software developer.',
+                              'embedded enthusiast.',
+                              ].map((text) => 
+                              RichText(
+                                text: TextSpan(
+                                  text: text,
+                                  style: TextStyle(
+                                    color: ColorScheme.innerBorderColor,
+                                    fontFamily: "Aileron", 
+                                    fontWeight: FontWeight.w400, 
+                                    fontSize: context.responsive<double>(
+                                      50, // default
+                                      sm: 42, // small 
+                                      md: 50, // medium
+                                      lg: 72, // large 
+                                      xl: 86, // extra large screen, 
+                                    )
                                   ),
                                 ),
-                              ).toList()
-                            )
+                              ),
+                            ).toList()
                           )
-                        )
+                        )]
                       ),
-                    ],
+                    ),
                   ),
                 ]
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 40.0),
-            ),
-            SizedBox(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children:[
-                  DoublePhotoFrame(
-                    innerBorder: ColorScheme.innerBorderColor, 
-                    outerBorder: ColorScheme.outerBorderColor, 
-                    logoAssetPath: 'assets/self.jpg',
-                    imageSizeSm: MediaQuery.of(context).size.width * 0.3,
-                    imageSizeMd: MediaQuery.of(context).size.width * 0.3,
-                    imageSizeLg: MediaQuery.of(context).size.width * 0.3,
-                    imageSizeXl: MediaQuery.of(context).size.width * 0.3,
-                    borderRadius: 60,
-                    borderSpace: MediaQuery.of(context).size.width * 0.02,
-                  ),
-                ]
+          ),
+          Expanded(
+            flex: 5,
+            child: Center(
+              child: DoublePhotoFrame(
+                innerBorder: ColorScheme.innerBorderColor, 
+                outerBorder: ColorScheme.outerBorderColor, 
+                logoAssetPath: 'assets/self.jpg',
+                imageSizeSm: MediaQuery.of(context).size.width * 0.3,
+                imageSizeMd: MediaQuery.of(context).size.width * 0.3,
+                imageSizeLg: MediaQuery.of(context).size.width * 0.3,
+                imageSizeXl: MediaQuery.of(context).size.width * 0.3,
+                borderRadius: 60,
+                borderSpace: MediaQuery.of(context).size.width * 0.02,
               ),
-            )
-          ],
-        ),
-      );
+            ),
+          ),
+        ],)
+    );
   }
 }
 
